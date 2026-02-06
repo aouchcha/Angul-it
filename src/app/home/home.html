@@ -1,0 +1,14 @@
+<h1>Angul-it</h1>
+<p>Test your humanity</p>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <!-- <input formControlName="captcha" placeholder="Enter the text you see in the image" /> -->
+    <input type="text" formControlName="username" placeholder="Enter your name">
+    @if (form.get('username')?.touched && form.get('username')?.invalid) {
+        <div>
+            
+        </div>
+    }
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+
+</form>

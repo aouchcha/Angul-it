@@ -57,3 +57,44 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+```
+Angul-it
+├─ .editorconfig
+├─ README.md
+├─ angular.json
+├─ package-lock.json
+├─ package.json
+├─ public
+│  └─ favicon.ico
+├─ src
+│  ├─ app
+│  │  ├─ app.config.ts
+│  │  ├─ app.css
+│  │  ├─ app.html
+│  │  ├─ app.routes.ts
+│  │  ├─ app.spec.ts
+│  │  ├─ app.ts
+│  │  ├─ captcha-holder
+│  │  │  ├─ captcha-holder.css
+│  │  │  ├─ captcha-holder.html
+│  │  │  ├─ captcha-holder.spec.ts
+│  │  │  └─ captcha-holder.ts
+│  │  ├─ home
+│  │  │  ├─ home.css
+│  │  │  ├─ home.html
+│  │  │  ├─ home.spec.ts
+│  │  │  └─ home.ts
+│  │  └─ result
+│  │     ├─ result.css
+│  │     ├─ result.html
+│  │     ├─ result.spec.ts
+│  │     └─ result.ts
+│  ├─ index.html
+│  ├─ main.ts
+│  └─ styles.css
+├─ tsconfig.app.json
+├─ tsconfig.json
+└─ tsconfig.spec.json
+
+```

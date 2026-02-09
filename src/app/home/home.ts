@@ -1,26 +1,44 @@
-import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, signal } from '@angular/core';
+import { form, FormField, required, SchemaPath, validate } from '@angular/forms/signals';
 import { CommonModule } from '@angular/common';
+
+interface LoginData {
+  username: string;
+}
+
 @Component({
   selector: 'app-home',
   imports: [
-    ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    FormField
   ],
   templateUrl: './home.html',
   styleUrl: './home.css',
   standalone: true,
 })
 export class Home {
-  private formBuilder = inject(FormBuilder);
-
-  form = this.formBuilder.group({
-    usermame: ['', [Validators.required]],
+  loginModule = signal<LoginData>({
+    username: ''
+  })
+  loginForm = form(this.loginModule, (fieldPath) => {
+    required(fieldPath.username, {message: 'Username is required'});
+    this.TrimCheck(fieldPath.username);
   });
-  
 
-  submit(): void {
-    if (!this.form.valid) return; 
-    console.log(this.form.value);
-  } 
+  TrimCheck(path: SchemaPath<string>, options?: {message?: string}) {
+     validate(path, ({value}) => {
+      if (typeof value() === 'string' && value().trim() === '') {
+        return {
+          kind:'emptyUsename', 
+          message: 'Username cannot be only whitespace' 
+        };
+      }
+      return null;
+    });
+  }
+
+
+  submit() {
+    console.log(this.loginModule());
+  }
 }

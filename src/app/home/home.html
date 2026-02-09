@@ -1,14 +1,30 @@
-<h1>Angul-it</h1>
-<p>Test your humanity</p>
-
-<form [formGroup]="form" (ngSubmit)="submit()">
-    <!-- <input formControlName="captcha" placeholder="Enter the text you see in the image" /> -->
-    <input type="text" formControlName="username" placeholder="Enter your name">
-    @if (form.get('username')?.touched && form.get('username')?.invalid) {
-        <div>
-            
+<div class="main">
+    <div class="header">
+        <h1>Angul-it</h1>
+        <p>Test your humanity</p>
+    </div>
+    
+    <form>
+        <div class="outer">
+            <label  id="username">
+                <p>Username:</p>
+                <input type="text" [formField]="loginForm.username">
+            </label>
+            @if(loginForm.username().invalid() && loginForm.username().touched()) {
+            <div class="error">
+                @for (error of loginForm.username().errors().slice(0, 1); track error.kind) {
+                <p>{{ error.message }}</p>
+                }
+            </div>
+            }
         </div>
-    }
-    <button type="submit" [disabled]="form.invalid">Submit</button>
+        <button type="button" [disabled]="loginForm().invalid()" (click)="submit()">Submit</button>
+    </form>
 
-</form>
+
+    <div class="footer">
+        <div class="text">Simple Mathematical Problems</div>
+        <div class="text">Simple Text Input</div>
+        <div class="text">Image Captcha</div>
+    </div>
+</div>

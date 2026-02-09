@@ -1,0 +1,167 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 80px;
+    min-height: 100vh;
+    background-color: #FFCE99;
+    padding: 20px;
+}
+
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #f1edd5;
+    padding: 30px;
+    align-items: center;
+    align-self: center;
+    border-radius: 50px;
+    width: 100%;
+    max-width: 600px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.header:hover {
+    transform: scale(1.03);
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    padding: 20px;
+}
+
+.outer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+}
+
+#username {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+#username p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input {
+    padding: 12px;
+    border-radius: 20px;
+    border: none;
+    width: 100%;
+    max-width: 320px;
+    transition: transform 0.3s ease-in-out;
+}
+
+input:hover {
+    transform: scale(1.03);
+    box-shadow: black 0px 0px 10px;
+}
+
+
+button {
+    padding: 12px;
+    border-radius: 20px;
+    border: none;
+    width: 120px;
+    background-color: #FF9644;
+    color: white;
+    font-weight: bold;
+}
+
+
+.footer {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.text {
+    padding: 20px 30px;
+    background-color: #FF9644;
+    border-radius: 50px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.text:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+
+.error {
+    color: red;
+    text-align: center;
+}
+
+
+
+@media (max-width: 768px) {
+    .main {
+        gap: 60px;
+    }
+
+    .header {
+        max-width: 90%;
+    }
+
+    .text {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main {
+        gap: 40px;
+    }
+
+    .header {
+        padding: 20px;
+        border-radius: 30px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    input {
+        max-width: 100%;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .text {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+    }
+
+    .text:hover,
+    .header:hover,
+    input:hover {
+        transform: none;
+    }
+}

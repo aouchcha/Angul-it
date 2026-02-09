@@ -1,0 +1,9 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    gap: 8px;
+    min-height: 100vh;
+    background-color: #FFCE99;
+    padding: 20px;
+}

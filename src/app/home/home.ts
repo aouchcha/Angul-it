@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { form, FormField, required, SchemaPath, validate } from '@angular/forms/signals';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 interface LoginData {
   username: string;
@@ -17,6 +18,9 @@ interface LoginData {
   standalone: true,
 })
 export class Home {
+
+  constructor(private router: Router) {}
+
   loginModule = signal<LoginData>({
     username: ''
   })
@@ -40,5 +44,6 @@ export class Home {
 
   submit() {
     console.log(this.loginModule());
+    this.router.navigate(['/captcha']);
   }
 }

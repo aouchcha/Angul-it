@@ -36,17 +36,7 @@ export class MathCaptchaComponent {
   });
   
  submit() {
-    // console.log(this.number1);
-    // console.log(this.number2);
-    // console.log(Math.floor(this.number1));
-    // console.log(Math.floor(this.number2));
-    
-
     const userResult = this.challengeModule().result;
-    // console.log(userResult);
-    // console.log(this.resultToCheck);
-    
-    
     if (userResult === this.resultToCheck) {
       this.challengeModule.update((state) => ({
         ...state,
@@ -55,8 +45,12 @@ export class MathCaptchaComponent {
       }));
       this.captchaHolder.formCaptcha.update((state) => ({
         ...state,
-        captchaId: state.captchaId + 1
+        captchaId: state.captchaId + 1,
+        levelFinished: state.levelFinished + 1
       }));
+      localStorage.setItem('data', JSON.stringify(this.captchaHolder.formCaptcha())); 
+
+
     } else {
       this.challengeModule.update((state) => ({
         ...state,

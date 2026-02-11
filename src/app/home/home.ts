@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { form, FormField, required, SchemaPath, validate } from '@angular/forms/signals';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -17,7 +17,11 @@ interface LoginData {
   styleUrl: './home.css',
   standalone: true,
 })
-export class Home {
+export class Home implements OnInit {
+
+  ngOnInit(): void {
+    localStorage.removeItem('data');
+  }
 
   constructor(private router: Router) {}
 

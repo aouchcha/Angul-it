@@ -1,7 +1,7 @@
 <div class="main">
     <div class="header">
         <h1>Second Level : Text Captcha</h1>
-        <p>To verify that you are a human, please type the following text: {{challengeForm.message().value()}}</p>
+        <p>To verify that you are a human, please type the following text: <span class="test">{{challengeForm.message().value()}}</span></p>
     </div>
     <div class="content">
         <input type="text" [formField]="challengeForm.result" (input)="challengeForm.notif().setControlValue('')" (input)="challengeForm.error().setControlValue('')">

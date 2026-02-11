@@ -27,7 +27,7 @@ export class TextCapchaComponent {
 
   challengeModule = signal<ChallengeResult>({
     success: false,
-    message: 'Type the word ' + this.TestText + ' to proceed:',
+    message:  this.TestText,
     result: '',
     notif: '',
     error: ''

@@ -1,0 +1,28 @@
+<p>image-captcha-component works!</p>
+<div class="captcha-container">
+
+  <h3 class="question">
+    {{ challenge().question }}
+  </h3>
+
+  <div class="grid">
+    @for (img of challenge().images; track img.id) {
+      <img
+        [src]="img.src"
+        (click)="toggle(img)"
+        [class.selected]="SelectedImages().has(img.id)"
+      />
+    }
+  </div>
+
+  <div class="actions">
+    <button (click)="submit()" [disabled]="SelectedImages().size === 0">
+      Verify
+    </button>
+
+    <!-- <button class="refresh" (click)="refresh()">
+      New Images
+    </button> -->
+  </div>
+
+</div>

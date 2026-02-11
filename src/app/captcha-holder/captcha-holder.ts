@@ -2,6 +2,8 @@ import { Component, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { MathCaptchaComponent } from '../math-captcha-component/math-captcha-component';
 import { TextCapchaComponent } from '../text-capcha-component/text-capcha-component';
+import { ImageCaptchaComponent } from '../image-captcha-component/image-captcha-component';
+
 interface CaptchaHolderProps {
   captchaId: number;
   startTime: Date;
@@ -12,7 +14,8 @@ interface CaptchaHolderProps {
   selector: 'app-captcha-holder',
   imports: [
     MathCaptchaComponent,
-    TextCapchaComponent
+    TextCapchaComponent,
+    ImageCaptchaComponent
   ],
   templateUrl: './captcha-holder.html',
   styleUrl: './captcha-holder.css',

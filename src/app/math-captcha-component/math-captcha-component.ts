@@ -17,25 +17,25 @@ interface ChallengeResult {
   styleUrl: './math-captcha-component.css',
 })
 export class MathCaptchaComponent {
-  constructor(private captchaHolder: CaptchaHolder) {}
+  constructor(private captchaHolder: CaptchaHolder) { }
 
   readonly number1 = Math.random() * 10;
   readonly number2 = Math.random() * 10;
   readonly resultToCheck = Math.floor(this.number1) + Math.floor(this.number2);
-  
+
   challengeModule = signal<ChallengeResult>({
     success: false,
-    message: Math.floor( this.number1 )+ ' + ' + Math.floor( this.number2 )+ ' = ?',
+    message: Math.floor(this.number1) + ' + ' + Math.floor(this.number2) + ' = ?',
     result: 0,
     notif: '',
     error: ''
   });
 
   challengeForm = form(this.challengeModule, (fieldPath) => {
-    required(fieldPath.result, {message: 'Answer is required'});
+    required(fieldPath.result, { message: 'Answer is required' });
   });
-  
- submit() {
+
+  submit() {
     const userResult = this.challengeModule().result;
     if (userResult === this.resultToCheck) {
       this.challengeModule.update((state) => ({
@@ -48,15 +48,20 @@ export class MathCaptchaComponent {
         captchaId: state.captchaId + 1,
         levelFinished: state.levelFinished + 1
       }));
-      localStorage.setItem('data', JSON.stringify(this.captchaHolder.formCaptcha())); 
+      localStorage.setItem('data', JSON.stringify(this.captchaHolder.formCaptcha()));
 
 
     } else {
       this.challengeModule.update((state) => ({
         ...state,
         success: false,
-        error: 'Incorrect. Please try again: ' + Math.floor( this.number1 )+ ' + ' + Math.floor( this.number2 )+ ' = ?'
+        error: 'Incorrect. Please try again: ' + Math.floor(this.number1) + ' + ' + Math.floor(this.number2) + ' = ?'
       }));
+      this.captchaHolder.formCaptcha.update((state) => ({ 
+        ...state,
+        faildAttempts: state.faildAttempts + 1 
+      })); 
+      localStorage.setItem('data', JSON.stringify(this.captchaHolder.formCaptcha()));
     }
   }
 }

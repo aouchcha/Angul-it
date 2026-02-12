@@ -1,11 +1,11 @@
-<p>image-captcha-component works!</p>
-<div class="captcha-container">
+<!-- <p>image-captcha-component works!</p> -->
+<div class="main">
 
   <h3 class="question">
     {{ challenge().question }}
   </h3>
 
-  <div class="grid">
+  <div class="grid" [class.disabled]="notify().success != ''">
     @for (img of challenge().images; track img.id) {
       <img
         [src]="img.src"
@@ -14,15 +14,30 @@
       />
     }
   </div>
+  <div class="notifications">
+    @if (notify().success != '') {
+       <p class="notification">{{ notify().success }}</p> 
+    }
+    @if (notify().error != '') {
+      <p class="error">{{ notify().error }}</p> 
+    }
+  </div>
 
   <div class="actions">
-    <button (click)="submit()" [disabled]="SelectedImages().size === 0">
-      Verify
-    </button>
-
-    <!-- <button class="refresh" (click)="refresh()">
-      New Images
-    </button> -->
+    @if(notify().success == '') {
+      <button (click)="submit()" [disabled]="SelectedImages().size === 0 || notify().success != ''">
+        Verify
+      </button>
+  
+      <button class="refresh" (click)="refresh()" [disabled]="notify().success != ''">
+        New Images
+      </button>
+    }
+    @if (notify().success != '') {
+      <button (click)="result()" [disabled]="notify().success == ''" >
+        Result
+      </button>
+    }
   </div>
 
 </div>

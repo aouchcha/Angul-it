@@ -1,13 +1,11 @@
 @if(formCaptcha().captchaId === 1) {
-    <p>hhhhhhhhhhhhhhhhh {{formCaptcha().captchaId}}</p>
+    <!-- <p>hhhhhhhhhhhhhhhhh {{formCaptcha().captchaId}}</p> -->
     <app-math-captcha-component></app-math-captcha-component>
 }
 @if(formCaptcha().captchaId === 2) {
-    <p>hhhhhhhhhhhhhhhhh {{formCaptcha().captchaId}}</p>
+    <!-- <p>hhhhhhhhhhhhhhhhh {{formCaptcha().captchaId}}</p> -->
     <app-text-capcha-component></app-text-capcha-component>
-}
-
-@if(formCaptcha().captchaId === 3) {
-    <p>hhhhhhhhhhhhhhhhh {{formCaptcha().captchaId}}</p>
+} @else {
+    <!-- <p>hhhhhhhhhhhhhhhhh {{formCaptcha().captchaId}}</p> -->
     <app-image-captcha></app-image-captcha>
 }

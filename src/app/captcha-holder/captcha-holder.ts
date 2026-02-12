@@ -8,6 +8,7 @@ interface CaptchaHolderProps {
   captchaId: number;
   startTime: Date;
   levelFinished: number;
+  faildAttempts: number;
 }
 
 @Component({
@@ -20,16 +21,17 @@ interface CaptchaHolderProps {
   templateUrl: './captcha-holder.html',
   styleUrl: './captcha-holder.css',
 })
-export class CaptchaHolder implements OnInit{
+export class CaptchaHolder implements OnInit {
 
   data: any | null = null;
   formCaptcha = signal<CaptchaHolderProps>({
     captchaId: 1,
     startTime: new Date(),
-    levelFinished: 1
+    levelFinished: 1,
+    faildAttempts: 0,
   });
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
   ngOnInit(): void {
     this.data = localStorage.getItem('data');
     if (this.data !== null) {
@@ -44,11 +46,11 @@ export class CaptchaHolder implements OnInit{
         startTime: new Date(this.data.startTime)
       }));
       console.log((this.data));
-    }else {
-      localStorage.setItem('data', JSON.stringify(this.formCaptcha())); 
+    } else {
+      localStorage.setItem('data', JSON.stringify(this.formCaptcha()));
     }
   }
-  
 
-  
+
+
 }

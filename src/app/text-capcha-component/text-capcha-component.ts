@@ -27,7 +27,7 @@ export class TextCapchaComponent {
 
   challengeModule = signal<ChallengeResult>({
     success: false,
-    message:  this.TestText,
+    message: this.TestText,
     result: '',
     notif: '',
     error: ''
@@ -75,6 +75,11 @@ export class TextCapchaComponent {
         success: false,
         error: 'Incorrect. Please try again: ' + this.challengeModule().message
       }));
+      this.captchaHolder.formCaptcha.update((state) => ({
+        ...state, 
+        faildAttempts: state.faildAttempts + 1
+      }));
+      localStorage.setItem('data', JSON.stringify(this.captchaHolder.formCaptcha()));
     }
   }
 

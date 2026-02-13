@@ -56,6 +56,7 @@
     width: fit-content;
 }
 
+
 input {
     padding: 10px;
     font-size: 16px;
@@ -92,4 +93,11 @@ button {
         max-width: 200px;
     }
     
+ }
+
+ @media (max-width: 480px) {
+    .content {
+        gap: 15px;
+        padding: 40px;
+    }
  }

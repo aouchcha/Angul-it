@@ -4,9 +4,15 @@
         <p>To verify that you are a human, please type the following text: <span class="test">{{challengeForm.message().value()}}</span></p>
     </div>
     <div class="content">
-        <input type="text" [formField]="challengeForm.result" (input)="challengeForm.notif().setControlValue('')" (input)="challengeForm.error().setControlValue('')">
+        <input type="text" 
+        #myInput
+        [formField]="challengeForm.result" 
+        (input)="challengeForm.notif().setControlValue('')" 
+        (input)="challengeForm.error().setControlValue('')"
+        autofocus
+        >
         @if(challengeForm.result().invalid() && challengeForm.result().touched()) {
-            <div class="error">
+            <div class="false">
                 @for (error of challengeForm.result().errors().slice(0, 1); track error.kind) {
                 <p>{{ error.message }}</p>
                 }

@@ -102,9 +102,13 @@ button:disabled {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
     padding: 10px;
+  }
+  .main {
+    height: 100vh;
+    gap: 5px;
   }
 }

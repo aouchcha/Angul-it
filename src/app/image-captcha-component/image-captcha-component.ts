@@ -47,7 +47,7 @@ export class ImageCaptchaComponent {
   private targetCategory: keyof typeof this.pool = this.categories[Math.floor(Math.random() * this.categories.length)];
 
   private images = this.chooseImages();
-  
+
   challenge = signal<ImageChallenge>({
     question: `Select all images with ${this.targetCategory.replace('_', ' ')}:`,
     images: this.images
@@ -114,8 +114,8 @@ export class ImageCaptchaComponent {
       });
       this.captchaHolder.formCaptcha.update((state) => ({
         ...state,
-        captchaId: state.captchaId + 1,
         levelFinished: state.levelFinished + 1,
+        finisTime: new Date()
       }));
       localStorage.setItem('data', JSON.stringify(this.captchaHolder.formCaptcha()));
     } else {
@@ -135,6 +135,8 @@ export class ImageCaptchaComponent {
   refresh = () => this.generateChalenge();
 
   result() {
+    console.warn("I am in result");
+    
     this.router.navigate(['/result']);
   }
 }

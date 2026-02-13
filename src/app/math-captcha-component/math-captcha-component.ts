@@ -1,6 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, signal, ViewChild } from '@angular/core';
 
-import { form, FormField, required, SchemaPath, validate } from '@angular/forms/signals';
+import { form, FormField, required } from '@angular/forms/signals';
 import { CaptchaHolder } from '../captcha-holder/captcha-holder';
 interface ChallengeResult {
   success: boolean;
@@ -16,7 +16,11 @@ interface ChallengeResult {
   templateUrl: './math-captcha-component.html',
   styleUrl: './math-captcha-component.css',
 })
-export class MathCaptchaComponent {
+export class MathCaptchaComponent implements AfterViewInit {
+  @ViewChild('myInput') input!: ElementRef<HTMLInputElement>;
+  ngAfterViewInit() {
+    this.input.nativeElement.focus();
+  }
   constructor(private captchaHolder: CaptchaHolder) { }
 
   readonly number1 = Math.random() * 10;

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, signal, ViewChild } from '@angular/core';
 import { CaptchaHolder } from '../captcha-holder/captcha-holder';
 import { form, FormField, required } from '@angular/forms/signals';
 
@@ -19,7 +19,12 @@ interface ChallengeResult {
   styleUrl: './text-capcha-component.css',
 })
 
-export class TextCapchaComponent {
+export class TextCapchaComponent implements AfterViewInit {
+  @ViewChild('myInput') input!: ElementRef<HTMLInputElement>;
+  ngAfterViewInit() {
+    this.input.nativeElement.focus();
+  }
+
   constructor(private captchaHolder: CaptchaHolder) { }
 
   readonly TestText = this.generateCaptchaText();
@@ -76,7 +81,7 @@ export class TextCapchaComponent {
         error: 'Incorrect. Please try again: ' + this.challengeModule().message
       }));
       this.captchaHolder.formCaptcha.update((state) => ({
-        ...state, 
+        ...state,
         faildAttempts: state.faildAttempts + 1
       }));
       localStorage.setItem('data', JSON.stringify(this.captchaHolder.formCaptcha()));

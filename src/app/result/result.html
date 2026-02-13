@@ -1,1 +1,11 @@
-<p>result works!</p>
+<!-- <p>result works!</p> -->
+<div class="main">
+    <h1>Congratulations</h1>
+    <p>Fails : {{Data().fails}}</p>
+    <p>Time Token To Finish : {{Data().time_Taken}} </p>
+    <p>Success Rate : {{Data().percentage}}% </p>
+    <div class="buttHolder">
+        <button (click)="restart()">Restart</button>
+        <button (click)="home()" >Home</button>
+    </div>
+</div>

@@ -8,7 +8,7 @@
         <div class="outer">
             <label  id="username">
                 <p>Username:</p>
-                <input type="text" [formField]="loginForm.username">
+                <input #myInput type="text" [formField]="loginForm.username" autofocus>
             </label>
             @if(loginForm.username().invalid() && loginForm.username().touched()) {
             <div class="error">

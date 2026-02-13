@@ -4,9 +4,16 @@
         <p>To verify that you are a human, please solve the following math problem: {{challengeForm.message().value()}}</p>
     </div>
     <div class="content">
-        <input type="number" [formField]="challengeForm.result" (input)="challengeForm.notif().setControlValue('')" (input)="challengeForm.error().setControlValue('')">
+        <input 
+        #myInput
+        type="number"
+        [formField]="challengeForm.result" 
+        (input)="challengeForm.notif().setControlValue('')" 
+        (input)="challengeForm.error().setControlValue('')"
+        [autofocus]
+        >
         @if(challengeForm.result().invalid() && challengeForm.result().touched()) {
-            <div class="error">
+            <div class="false">
                 @for (error of challengeForm.result().errors().slice(0, 1); track error.kind) {
                 <p>{{ error.message }}</p>
                 }

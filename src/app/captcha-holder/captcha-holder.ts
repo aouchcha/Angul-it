@@ -7,6 +7,7 @@ import { ImageCaptchaComponent } from '../image-captcha-component/image-captcha-
 interface CaptchaHolderProps {
   captchaId: number;
   startTime: Date;
+  finisTime?: Date;
   levelFinished: number;
   faildAttempts: number;
 }
@@ -16,7 +17,7 @@ interface CaptchaHolderProps {
   imports: [
     MathCaptchaComponent,
     TextCapchaComponent,
-    ImageCaptchaComponent
+    ImageCaptchaComponent,
   ],
   templateUrl: './captcha-holder.html',
   styleUrl: './captcha-holder.css',
@@ -27,7 +28,7 @@ export class CaptchaHolder implements OnInit {
   formCaptcha = signal<CaptchaHolderProps>({
     captchaId: 1,
     startTime: new Date(),
-    levelFinished: 1,
+    levelFinished: 0,
     faildAttempts: 0,
   });
 
@@ -36,7 +37,7 @@ export class CaptchaHolder implements OnInit {
     this.data = localStorage.getItem('data');
     if (this.data !== null) {
       this.data = JSON.parse(this.data);
-      if (this.data.captchaId != this.data.levelFinished) {
+      if (this.data.captchaId - 1 != this.data.levelFinished) {
         this.router.navigate(['/BadRequest']);
       }
       this.formCaptcha.update((state) => ({
